@@ -1,34 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  <title>Message Board</title>
-</head>
-<body>
-  <h1>Message Board</h1>
-
-  {% for message in messages %}
-    <p>{{ message[0] }} - {{ message[1] }}</p>
-  {% endfor %}
-
-  {% with messages=[] %}
-  {% endwith %}
-  
-  <hr>
-
-  <form action="{{ url_for('submit') }}" method="POST">
-    <textarea name="content" rows="5"></textarea>
-    <br>
-    <input type="submit" value="Post">
-  </form>
-  
-  {% with messages=get_flashed_messages() %}
-    {% if messages %}
-      <ul class="flashes">
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  {% endwith %}
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>留言板</title>
+    </head>
+    <body>
+        <h1>留言板</h1>
+        <ul>
+            {% for message in messages %}
+            <li>{{ message[0] }} ({{ message[1] }})</li>
+            {% endfor %}
+        </ul>
+        <form method="POST">
+            <label>留言: </label>
+            <textarea name="message"></textarea>
+            <br>
+            <input type="submit">
+        </form>
+    </body>
 </html>
