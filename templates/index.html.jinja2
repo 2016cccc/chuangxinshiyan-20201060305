@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>留言板</title>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+    <body>
+        <h1>留言板</h1>
+        <ul>
+            {% for message in messages %}
+              <div class="message">
+                <p style="color:{{ message[4] }}">{{ message[0] }}</p>
+                {% if message[3] %}
+                <img src="{{ url_for('static', filename='uploads/' + message[3]) }}">
+                {% endif %}
+                <p>{{ message[1] }}</p>
+                <p style="color:{{ message[2] }}">{{ message[2] }}</p>
+              </div>
+            {% endfor %}
+        </ul>
+            <form method="POST" enctype="multipart/form-data">
+                <label>留言: </label>
+                <textarea name="message"></textarea>
+                <br>
+                <label>选择颜色: </label>
+                <input type="color" id="colorpicker" name="colorpicker" value="#000000">
+                <br>
+                <label>上传图片: </label>
+                <input type="file" name="file">
+                <br>
+                <input type="submit">
+            </form>
+    </body>
+</html>
